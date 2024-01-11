@@ -3,7 +3,7 @@ const router = express.Router();
 const Book = require('../models/BooksModels');
 const authenticateUser = require('../middleware/authenticateUser');
 
-// Get all books (accessible to logged-in users)
+// Get all books 
 router.get('/', authenticateUser, async (req, res) => {
   try {
     const books = await Book.find();
@@ -13,7 +13,7 @@ router.get('/', authenticateUser, async (req, res) => {
   }
 });
 
-// Get a book by ID (accessible to logged-in users)
+
 router.get('/:id', authenticateUser, async (req, res) => {
   const bookId = req.params.id;
   try {
@@ -73,6 +73,6 @@ router.delete('/:id', authenticateUser, async (req, res) => {
   }
 });
 
-// Like a book (accessible to logged-in users)
+
 
 module.exports = router;
