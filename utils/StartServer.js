@@ -1,8 +1,8 @@
 const { faker } = require('@faker-js/faker');
-const Author = require('../models/AuthorModels'); // Import your Author model
-const Book = require('../models/BooksModels'); // Import your Book model
+const Author = require('../models/AuthorModels'); 
+const Book = require('../models/BooksModels'); 
 
-// Generate Mock Data
+
 const generateMockData = async () => {
   // Generate authors
   const authors = [];
@@ -16,7 +16,7 @@ const generateMockData = async () => {
     authors.push(author);
   
 
-  // Generate books
+
   for (let i = 0; i < 5; i++) {
     
     const book = new Book({
@@ -29,7 +29,7 @@ const generateMockData = async () => {
   }
 };
 
-// Function to start the server
+
 const startServer = async () => {
   // Generate mock data
   await generateMockData();
