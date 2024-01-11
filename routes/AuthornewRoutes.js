@@ -6,14 +6,13 @@ const Author = require('../models/AuthorModels');
 const Book = require('../models/BooksModels');
 const authenticateUser = require('../middleware/authenticateUser');
 
-// Assuming you have models for Author and Book and they are imported
 
 router.get('/', authenticateUser, async (req, res) => {
     try {
       const authors = await Author.aggregate([
         {
           $lookup: {
-            from: 'books', // Name of the books collection in MongoDB
+            from: 'books', 
             localField: '_id',
             foreignField: 'author',
             as: 'books'
@@ -25,7 +24,7 @@ router.get('/', authenticateUser, async (req, res) => {
             name: 1,
             email: 1,
             phone_no: 1,
-            bookCount: { $size: '$books' } // Count the number of books for each author
+            bookCount: { $size: '$books' } 
           }
         }
       ]);
@@ -70,10 +69,10 @@ router.get('/', authenticateUser, async (req, res) => {
   });
   
   router.get('/loggedin/me', authenticateUser, async (req, res) => {
-    const authorId = req.authorId; // Assuming `authorId` is set in the authenticateUser middleware
+    const authorId = req.authorId; 
     
     try {
-      // Find author by ID
+      
       const author = await Author.findById(authorId);
   
       if (!author) {
@@ -97,7 +96,7 @@ router.get('/', authenticateUser, async (req, res) => {
   
       res.json(response);
     } catch (error) {
-      console.error(error); // Log the error for debugging purposes
+      console.error(error);
       res.status(500).json({ message: 'Server Error' });
     }
   });
